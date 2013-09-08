@@ -1,6 +1,7 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :invite do
+    association :sender,    :factory => :petitioner
+    association :recipient, :factory => :petitioner
+    sent_at DateTime.now
   end
 end
