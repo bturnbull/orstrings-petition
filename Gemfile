@@ -37,7 +37,7 @@ end
 
 group :test do
   gem 'turn',               :require => false
-  gem 'webrat'
+  gem 'capybara'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'simplecov'
