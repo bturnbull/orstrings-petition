@@ -16,5 +16,15 @@
 #
 
 class Petitioner < ActiveRecord::Base
+  has_many :invites,  :class_name  => 'Invite',
+                      :foreign_key => :sender_id
+  has_one  :invite,   :class_name  => 'Invite',
+                      :foreign_key => :recipient_id
+  has_many :invitees, :through     => :invites,
+                      :class_name  => 'Petitioner',
+                      :source      => :recipient
+  has_one  :inviter,  :through     => :invite,
+                      :class_name  => 'Petitioner',
+                      :source      => :sender
   # attr_accessible :title, :body
 end

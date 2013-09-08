@@ -11,5 +11,7 @@
 #
 
 class Invite < ActiveRecord::Base
+  belongs_to :sender,    :class_name => 'Petitioner'
+  belongs_to :recipient, :class_name => 'Petitioner'
   # attr_accessible :title, :body
 end
