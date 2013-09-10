@@ -26,5 +26,4 @@ class Petitioner < ActiveRecord::Base
   has_one  :inviter,  :through     => :invite,
                       :class_name  => 'Petitioner',
                       :source      => :sender
-  # attr_accessible :title, :body
 end

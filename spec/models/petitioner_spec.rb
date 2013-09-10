@@ -18,5 +18,16 @@
 require 'spec_helper'
 
 describe Petitioner do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe 'associations' do
+    it { should have_many(:invites) }
+    it { should have_one(:invite) }
+    it { should have_many(:invitees).through(:invites) }
+    it { should have_one(:inviter).through(:invite) }
+  end
+
+  describe 'validations' do
+    subject { FactoryGirl.build(:petitioner) }
+  end
+
 end

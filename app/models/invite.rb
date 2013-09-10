@@ -13,5 +13,9 @@
 class Invite < ActiveRecord::Base
   belongs_to :sender,    :class_name => 'Petitioner'
   belongs_to :recipient, :class_name => 'Petitioner'
-  # attr_accessible :title, :body
+
+  validates :sender,       :presence    => true
+  validates :recipient,    :presence    => true,
+                           :self_invite => true
+  validates :recipient_id, :uniqueness  => true
 end
