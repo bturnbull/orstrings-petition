@@ -1,0 +1,2 @@
+class PetitionersController < ApplicationController
+end
