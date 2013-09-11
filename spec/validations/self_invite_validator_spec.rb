@@ -15,11 +15,17 @@ describe SelfInviteValidator do
     end
   end
 
-  context 'invalid' do
+  context 'sender sending to self' do
     it 'should not validate' do
       record.recipient = record.sender
       subject.validate(record)
       record.errors[:recipient].should_not be_empty
+    end
+
+    it 'should set useful error message' do
+      record.recipient = record.sender
+      subject.validate(record)
+      record.errors[:recipient].should eq(["can't invite themselves"])
     end
   end
 end
