@@ -1,4 +1,11 @@
 Orstrings::Application.routes.draw do
+
+  resource :petition, :only => [:show] do
+    resources :signers, :only => [:index, :show, :new, :create],
+                        :constraints => {:id => /\d+/},
+                        :controller => 'petitioners'
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
