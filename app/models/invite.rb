@@ -18,4 +18,6 @@ class Invite < ActiveRecord::Base
   validates :recipient,    :presence    => true,
                            :self_invite => true
   validates :recipient_id, :uniqueness  => true
+
+  attr_accessible :sender, :recipient
 end
