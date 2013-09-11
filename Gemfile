@@ -41,5 +41,6 @@ group :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'simplecov'
+  gem 'database_cleaner',   '1.0.1'   # multiple adapter issue #224
 end
 
