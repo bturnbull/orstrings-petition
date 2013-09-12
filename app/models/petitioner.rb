@@ -27,5 +27,8 @@ class Petitioner < ActiveRecord::Base
                       :class_name  => 'Petitioner',
                       :source      => :sender
 
-  attr_accessible :email, :first_name, :last_name
+  attr_accessible :email, :first_name, :last_name, :town
+
+  scope :signed,   lambda { where('signed_at IS NOT NULL').order('signed_at DESC') }
+  scope :unsigned, lambda { where('signed_at IS NULL') }
 end

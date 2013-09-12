@@ -30,4 +30,56 @@ describe Petitioner do
     subject { FactoryGirl.build(:petitioner) }
   end
 
+  describe 'attributes' do
+
+    { :email         => {:assignable => true,  :value => 'foo@example.com'},
+      :first_name    => {:assignable => true,  :value => 'Bart'},
+      :last_name     => {:assignable => true,  :value => 'Simpson'},
+      :town          => {:assignable => true,  :value => 'Springfield'},
+      :is_visible    => {:assignable => false, :value => true},
+      :can_email     => {:assignable => false, :value => true},
+      :signing_token => {:assignable => false, :value => '0123456789ABCDEF0123456789ABCDEF' } }.each do |k,v|
+
+      describe "#{k}" do
+
+        if v[:assignable]
+          it 'should allow mass assignment' do
+            lambda { subject.update_attributes(k => v[:value]) }.should_not raise_error
+          end
+        else
+          it 'should not allow mass assignment' do
+            lambda { subject.update_attributes(k => v[:value]) }.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
+          end
+        end
+      end
+    end
+  end
+
+  describe 'scopes' do
+    before do
+      @p1 = FactoryGirl.create(:petitioner)
+      @p2 = FactoryGirl.create(:petitioner, :unsigned)
+    end
+
+    describe 'signed' do
+
+      it 'should return signed petitioners' do
+        Petitioner.signed.should eq([@p1])
+      end
+
+      it 'should return signed petitioners in reverse chronological order' do
+        @p3 = FactoryGirl.create(:petitioner, :signed_at => @p1.signed_at - 1.minute)
+        Petitioner.signed.should eq([@p1, @p3])
+        @p3.update_attribute(:signed_at, @p1.signed_at + 1.minute)
+        Petitioner.signed.should eq([@p3, @p1])
+      end
+    end
+
+    describe 'unsigned' do
+
+      it 'should return unsigned petitioners' do
+        Petitioner.unsigned.should eq([@p2])
+      end
+    end
+  end
 end
