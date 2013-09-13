@@ -2,8 +2,15 @@
 %html
   %head
     %title Oyster River Strings
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+    %meta{:"http-equiv" => "X-UA-Compatible", :content => "IE=edge"}
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
+    /[if lt IE 9]
+      = javascript_include_tag "html5shiv.js"
+      = javascript_include_tag "respond.js"
     = csrf_meta_tags
   %body
-    = yield
+    %div.container
+      %h1 Oyster River Strings
+      = yield
+    = javascript_include_tag "application"
