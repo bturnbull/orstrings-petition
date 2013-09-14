@@ -82,4 +82,11 @@ describe Petitioner do
       end
     end
   end
+
+  describe 'methods' do
+
+    describe '#name' do
+      its(:name) { should eq("#{subject.first_name} #{subject.last_name}") }
+    end
+  end
 end

@@ -31,4 +31,8 @@ class Petitioner < ActiveRecord::Base
 
   scope :signed,   lambda { where('signed_at IS NOT NULL').order('signed_at DESC') }
   scope :unsigned, lambda { where('signed_at IS NULL') }
+
+  def name
+    "#{first_name} #{last_name}"
+  end
 end
