@@ -1,0 +1,6 @@
+- @petitioner = petitioner unless petitioner.nil?
+%div.petitioner
+  %p.name= @petitioner.name
+  %p.info
+    %span.town= @petitioner.town
+    %span.date= @petitioner.signed_at

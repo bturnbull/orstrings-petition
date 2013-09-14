@@ -1,6 +1,6 @@
 class PetitionersController < ApplicationController
   def index
-    @petitioners = Petitioner.all
+    @petitioners = Petitioner.signed
   end
 
   def show

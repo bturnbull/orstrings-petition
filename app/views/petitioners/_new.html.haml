@@ -1,0 +1,16 @@
+%div.petitioner
+  = form_for @petitioner, :url => {:action => 'create'}, :html => {:class => 'form-horizontal', :role => 'form'} do |f|
+    %div.control-group
+      = f.label :first_name, :class => 'control-label'
+      %div.controls= f.text_field :first_name
+    %div.control-group
+      = f.label :last_name, :class => 'control-label'
+      %div.controls= f.text_field :last_name
+    %div.control-group
+      = f.label :email, :class => 'control-label'
+      %div.controls= f.text_field :email
+    %div.control-group
+      = f.label :town, :class => 'control-label'
+      %div.controls= f.text_field :town
+    %div.control-group
+      %div.controls= f.submit 'Sign!', :class => 'btn btn-default'
