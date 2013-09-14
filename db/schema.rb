@@ -11,27 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130908193225) do
+ActiveRecord::Schema.define(:version => 20130914195326) do
+
+  create_table "confirmations", :force => true do |t|
+    t.integer  "signature_id"
+    t.string   "token"
+    t.datetime "confirmed_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "invites", :force => true do |t|
     t.integer  "recipient_id"
     t.integer  "sender_id"
+    t.string   "token"
     t.datetime "sent_at"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "petitioners", :force => true do |t|
+  create_table "signatures", :force => true do |t|
     t.string   "email"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "town"
     t.boolean  "is_visible"
     t.boolean  "can_email"
-    t.string   "signing_token"
-    t.datetime "signed_at"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "confirmed_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
 end

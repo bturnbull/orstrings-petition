@@ -13,6 +13,7 @@
 require 'spec_helper'
 
 describe Invite do
+  subject { FactoryGirl.create(:invite) }
 
   describe 'associations' do
     it { should belong_to(:sender) }
@@ -20,7 +21,6 @@ describe Invite do
   end
 
   describe 'validations' do
-    subject { FactoryGirl.build(:invite) }
 
     describe 'sender' do
       it 'should be present' do
@@ -47,6 +47,22 @@ describe Invite do
       end
     end
 
-  end
+    describe 'token' do
+      it 'should be present' do
+        subject.token = nil
+        subject.should_not be_valid
+      end
 
+      it 'should be an MD5 hex digest' do
+        subject.token = 'foo'
+        subject.should_not be_valid
+      end
+
+      it 'should be unique' do
+        @invite = FactoryGirl.create(:invite)
+        @invite.token = subject.token
+        @invite.should_not be_valid
+      end
+    end
+  end
 end
