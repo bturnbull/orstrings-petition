@@ -34,7 +34,7 @@ private
 
     10.times do
       self.token = Digest::MD5.hexdigest(rand(1048576).to_s + Time.now.to_s)
-      break unless self.class.where(:token => self.token).count == 0
+      break unless self.class.where(:token => self.token).count > 0
     end
   end
 
