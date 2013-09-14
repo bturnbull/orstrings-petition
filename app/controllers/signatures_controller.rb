@@ -16,6 +16,7 @@ class SignaturesController < ApplicationController
     @signature = Signature.new(params[:signature])
 
     if @signature.save
+      @signature.confirmations.create
       redirect_to petition_signature_url(@signature)
     else
       render :action => 'new'

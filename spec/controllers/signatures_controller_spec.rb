@@ -58,6 +58,12 @@ describe SignaturesController do
         assigns(:signature).should be_persisted
       end
 
+      it 'should persist a confirmation' do
+        expect {
+          post :create, :signature => valid_attributes
+        }.to change(Confirmation, :count).by(1)
+      end
+
       it 'should redirect to the created signature' do
         response.should redirect_to(petition_signature_url(Signature.last))
       end
