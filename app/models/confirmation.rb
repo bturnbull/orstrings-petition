@@ -5,6 +5,7 @@
 #  id           :integer          not null, primary key
 #  signature_id :integer
 #  token        :string(255)
+#  ip           :string(255)
 #  confirmed_at :datetime
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
@@ -21,6 +22,10 @@ class Confirmation < ActiveRecord::Base
 
   def to_param
     token
+  end
+
+  def confirmed?
+    !!confirmed_at
   end
 
 private

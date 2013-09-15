@@ -7,6 +7,7 @@
 #  first_name   :string(255)
 #  last_name    :string(255)
 #  town         :string(255)
+#  ip           :string(255)
 #  is_visible   :boolean
 #  can_email    :boolean
 #  confirmed_at :datetime
@@ -36,6 +37,7 @@ describe Signature do
       :first_name    => {:assignable => true,  :value => 'Bart'},
       :last_name     => {:assignable => true,  :value => 'Simpson'},
       :town          => {:assignable => true,  :value => 'Springfield'},
+      :ip            => {:assignable => false, :value => '1.2.3.4'},
       :is_visible    => {:assignable => true,  :value => true},
       :can_email     => {:assignable => true,  :value => true},
       :confimed_at   => {:assignable => false, :value => Time.now} }.each do |k,v|

@@ -1,11 +1,13 @@
 FactoryGirl.define do
   factory :confirmation do
     signature
-    token { Digest::MD5.hexdigest(Time.now.to_s + rand(1048576).to_s) }
-    confirmed_at DateTime.now
+    token nil
+    ip nil
+    confirmed_at nil
 
-    trait :unconfirmed do
-      confirmed_at nil
+    trait :confirmed do
+      ip  { "#{rand(256)}.#{rand(256)}.#{rand(256)}.#{rand(256)}" }
+      confirmed_at DateTime.now
     end
   end
 end

@@ -5,6 +5,7 @@
 #  id           :integer          not null, primary key
 #  signature_id :integer
 #  token        :string(255)
+#  ip           :string(255)
 #  confirmed_at :datetime
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
@@ -55,13 +56,34 @@ describe Confirmation do
         subject.save.should_not be_true
         subject.token.should be_nil
       end
+
+      it 'should not be mass assignable' do
+        lambda {
+          subject.update_attributes(:token => Digest::MD5.hexdigest('foo'))
+        }.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
+      end
     end
+
+    its(:ip) { should be_nil }
+    its(:confirmed_at) { should be_nil }
   end
 
   describe 'methods' do
 
-    describe 'to_param' do
+    describe '#to_param' do
       its(:to_param) { should eq(subject.token) }
+    end
+
+    describe '#confirmed?' do
+
+      it 'should be true if record confirmed' do
+        subject.confirmed_at = Time.now
+        subject.confirmed?.should be_true
+      end
+
+      it 'should not be true if record unconfirmed' do
+        subject.confirmed?.should_not be_true
+      end
     end
   end
 

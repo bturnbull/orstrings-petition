@@ -7,6 +7,7 @@
 #  first_name   :string(255)
 #  last_name    :string(255)
 #  town         :string(255)
+#  ip           :string(255)
 #  is_visible   :boolean
 #  can_email    :boolean
 #  confirmed_at :datetime

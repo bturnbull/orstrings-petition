@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(:version => 20130914195326) do
   create_table "confirmations", :force => true do |t|
     t.integer  "signature_id"
     t.string   "token"
+    t.string   "ip"
     t.datetime "confirmed_at"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130914195326) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "town"
+    t.string   "ip"
     t.boolean  "is_visible"
     t.boolean  "can_email"
     t.datetime "confirmed_at"

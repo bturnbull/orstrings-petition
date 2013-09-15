@@ -5,6 +5,7 @@
 #  id           :integer          not null, primary key
 #  recipient_id :integer
 #  sender_id    :integer
+#  token        :string(255)
 #  sent_at      :datetime
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null

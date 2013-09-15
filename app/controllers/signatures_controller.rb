@@ -13,7 +13,8 @@ class SignaturesController < ApplicationController
   end
 
   def create
-    @signature = Signature.new(params[:signature])
+    @signature    = Signature.new(params[:signature])
+    @signature.ip = remote_ip
 
     if @signature.save
       @signature.confirmations.create

@@ -42,7 +42,11 @@ describe SignaturesController do
   describe '#create' do
 
     context 'valid attributes' do
-      before { post :create, :signature => valid_attributes }
+      before do
+        @ip = '5.6.7.8'
+        subject.stub(:remote_ip).and_return(@ip)
+        post :create, :signature => valid_attributes
+      end
 
       it 'should create a new signature' do
         expect {
@@ -56,6 +60,10 @@ describe SignaturesController do
 
       it 'should persist a signature' do
         assigns(:signature).should be_persisted
+      end
+
+      it 'should save the ip address' do
+        Signature.last.ip.should eq(@ip)
       end
 
       it 'should persist a confirmation' do

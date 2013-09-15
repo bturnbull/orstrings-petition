@@ -5,6 +5,7 @@ class CreateSignatures < ActiveRecord::Migration
       t.string     :first_name
       t.string     :last_name
       t.string     :town
+      t.string     :ip
       t.boolean    :is_visible
       t.boolean    :can_email
       t.datetime   :confirmed_at
