@@ -29,6 +29,9 @@ Orstrings::Application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  # Mail host domain for testing
+  config.action_mailer.smtp_settings = {:domain => 'example.com'}
+
   # Raise exception on mass assignment protection for Active Record models
   config.active_record.mass_assignment_sanitizer = :strict
 

@@ -10,8 +10,9 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
-# Ignore the database configuration
+# Ignore configuration files
 /config/database.yml
+/config/mandrill.yml
 
 # Ignore all logfiles, coverage reports, and tempfiles.
 /log/*.log

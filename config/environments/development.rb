@@ -35,6 +35,11 @@ Orstrings::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  # Mandrill configuration
+  if File.exist?(Rails.root.join('config/mandrill.yml'))
+    config.action_mailer.smtp_settings = YAML.load_file(Rails.root.join('config/mandrill.yml'))[:mandrill][:smtp]
+  end
+
   # Enable livereload
   config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
 end
