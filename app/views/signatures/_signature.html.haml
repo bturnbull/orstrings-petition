@@ -1,0 +1,9 @@
+- @signature ||= signature
+%div.signature
+%p.name= @signature.name
+%p.info
+  %span.town= @signature.town
+  &mdash;
+  %span.conf
+    Signed at
+    = @signature.confirmed_at
