@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20130914195326) do
     t.integer  "signature_id"
     t.string   "token"
     t.string   "ip"
+    t.datetime "sent_at"
     t.datetime "confirmed_at"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false

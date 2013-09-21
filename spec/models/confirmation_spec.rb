@@ -6,6 +6,7 @@
 #  signature_id :integer
 #  token        :string(255)
 #  ip           :string(255)
+#  sent_at      :datetime
 #  confirmed_at :datetime
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
@@ -66,6 +67,7 @@ describe Confirmation do
 
     its(:ip) { should be_nil }
     its(:confirmed_at) { should be_nil }
+    its(:sent_at) { should be_nil }
   end
 
   describe 'methods' do

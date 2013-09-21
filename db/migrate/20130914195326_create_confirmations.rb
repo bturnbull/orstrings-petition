@@ -4,6 +4,7 @@ class CreateConfirmations < ActiveRecord::Migration
       t.integer  :signature_id
       t.string   :token
       t.string   :ip
+      t.datetime :sent_at
       t.datetime :confirmed_at
       t.timestamps
     end

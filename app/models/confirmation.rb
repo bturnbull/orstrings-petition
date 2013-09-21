@@ -6,6 +6,7 @@
 #  signature_id :integer
 #  token        :string(255)
 #  ip           :string(255)
+#  sent_at      :datetime
 #  confirmed_at :datetime
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
