@@ -1,4 +1,11 @@
 -if @signature.confirmed?
+  -if @signature.confirmed_at > 15.minutes.ago
+    %h2 Thank You!
+    %p
+      Thank-you for confirming your email address and supporting the growth of arts and music
+      education at Oyster River.  Your signature has been added to
+      = link_to 'the petition', petition_path
+      as follows:
   =render :partial => 'signature'
 -else
   %div
