@@ -1,1 +1,22 @@
-=render :partial => 'signature'
+-if @signature.confirmed?
+  =render :partial => 'signature'
+-else
+  %div
+    -if @signature.confirmation.created_at > 15.minutes.ago
+      %h2 Just One More Thing!
+    -else
+      %h2 Waiting For Confirmation
+    %p
+      Just one more thing to do and your signature will be added to the petition.  We sent a
+      confirmation email
+      = friendly_time(@signature.confirmation.sent_at)
+      from
+      %strong OR Strings Petition
+      to
+      -if @signature.confirmation.sent_at > 90.seconds.ago
+        =succeed '.' do
+          %strong= @signature.email
+      -else
+        the address you provided.
+      Inside, there is a confirmation link that you must click
+      to verify your email address and finish the signature process.
