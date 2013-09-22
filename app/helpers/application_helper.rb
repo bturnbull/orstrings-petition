@@ -11,4 +11,8 @@ module ApplicationHelper
       time.strftime('on %A, %B %-d around %l %p')
     end
   end
+
+  def friendly_date(date)
+    date.strftime("%A, %B %-d %Y")
+  end
 end

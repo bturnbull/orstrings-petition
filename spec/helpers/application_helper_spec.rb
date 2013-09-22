@@ -20,4 +20,11 @@ describe ApplicationHelper do
       friendly_time(7.days.ago).should eq(7.days.ago.strftime('on %A, %B %-d around %l %p'))
     end
   end
+
+  describe 'friendly_date' do
+
+    it 'should return the date in friendly format' do
+      friendly_date(1.day.ago).should eq(1.day.ago.strftime("%A, %B %-d %Y"))
+    end
+  end
 end
