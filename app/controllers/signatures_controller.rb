@@ -9,7 +9,7 @@ class SignaturesController < ApplicationController
   end
 
   def new
-    @signature = Signature.new
+    @signature = Signature.new(:is_visible => true, :can_email => true)
   end
 
   def create

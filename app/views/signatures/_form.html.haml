@@ -11,6 +11,12 @@
       %div.controls= f.text_field :email
     %div.control-group
       = f.label :town, :class => 'control-label'
-      %div.controls= f.text_field :town
+      %div.controls= f.select :town, [['Durham', 'Durham'], ['Lee', 'Lee'], ['Madbury', 'Madbury'], ['Other', 'Other']]
+    %div.control-group
+      = f.label :is_visible, 'Display on website', :class => 'control-label'
+      %div.controls= f.check_box :is_visible
+    %div.control-group
+      = f.label :can_email, 'Send updates', :class => 'control-label'
+      %div.controls= f.check_box :can_email
     %div.control-group
       %div.controls= f.submit 'Sign!', :class => 'btn btn-default'

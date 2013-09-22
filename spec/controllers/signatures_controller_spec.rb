@@ -37,6 +37,14 @@ describe SignaturesController do
     it 'should assign a new signature to @signature' do
       assigns(:signature).should be_a_new(Signature)
     end
+
+    it 'should enable is_visible' do
+      assigns(:signature).is_visible?.should be_true
+    end
+
+    it 'should enable can_email' do
+      assigns(:signature).can_email?.should be_true
+    end
   end
 
   describe '#create' do
