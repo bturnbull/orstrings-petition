@@ -17,7 +17,8 @@ class SignaturesController < ApplicationController
     @signature.ip = remote_ip
 
     if @signature.save
-      @signature.confirmations.create
+      # TODO - Create background processing option
+      ConfirmationSender.new(@signature.confirmations.create).deliver
       redirect_to petition_signature_url(@signature)
     else
       render :action => 'new'

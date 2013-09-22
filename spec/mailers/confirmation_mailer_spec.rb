@@ -8,7 +8,7 @@ describe ConfirmationMailer do
     let(:mail) { subject.confirmation(confirmation) }
 
     it 'should render the subject' do
-      mail.subject.should eq('OR String Petition Signature Confirmation')
+      mail.subject.should eq('OR Strings Petition Signature Confirmation')
     end
 
     it 'should set the recipient' do
