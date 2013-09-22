@@ -102,5 +102,13 @@ describe Signature do
         its(:confirmed?) { should be_true }
       end
     end
+
+    describe '#confirmation' do
+      before { @last_confirmation = FactoryGirl.create(:confirmation, :signature => subject) }
+
+      it 'should return the more recent confirmation' do
+        subject.confirmation.should eq(@last_confirmation)
+      end
+    end
   end
 end

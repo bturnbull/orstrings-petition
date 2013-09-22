@@ -32,8 +32,8 @@ class Signature < ActiveRecord::Base
 
   attr_accessible :email, :first_name, :last_name, :town, :is_visible, :can_email
 
-  scope :confirmed,   lambda { where('confirmed_at IS NOT NULL').order('confirmed_at DESC') }
-  scope :unconfirmed, lambda { where('confirmed_at IS NULL') }
+  scope :confirmed,    lambda { where('confirmed_at IS NOT NULL').order('confirmed_at DESC') }
+  scope :unconfirmed,  lambda { where('confirmed_at IS NULL') }
 
   def name
     "#{first_name} #{last_name}"
@@ -41,5 +41,10 @@ class Signature < ActiveRecord::Base
 
   def confirmed?
     !!confirmed_at
+  end
+
+  # return the most recent confirmation
+  def confirmation
+    confirmations.order(:created_at).last
   end
 end
