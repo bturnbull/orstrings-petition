@@ -3,4 +3,12 @@
   %p.text-center
     %a{:href => new_petition_signature_path}
       %button.btn.btn-large.btn-primary{:type => 'button'} Sign the Petition!
-=render :partial => 'signatures/signature', :collection => @signatures
+%div.row
+  %div.span5.offset1
+    - @signatures.each_with_index do |signature, index|
+      - next if index.odd?
+      = render :partial => 'signatures/signature', :locals => {:signature => signature}
+  %div.span5
+    - @signatures.each_with_index do |signature, index|
+      - next if index.even?
+      = render :partial => 'signatures/signature', :locals => {:signature => signature}

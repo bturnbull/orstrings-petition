@@ -1,3 +1,11 @@
-// Place all the styles related to the signatures controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+div.signature {
+  p.name {
+    font-size: $baseFontSize * 1.8;
+    line-height: $baseFontSize * 1.8;
+    margin-bottom: 0;
+  }
+  p.info {
+    color: $grey;
+    font-size: $baseFontSize * 0.9;
+  }
+}
