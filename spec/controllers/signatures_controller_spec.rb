@@ -56,32 +56,129 @@ describe SignaturesController do
         post :create, :signature => valid_attributes
       end
 
-      it 'should create a new signature' do
-        expect {
-          post :create, :signature => valid_attributes
-        }.to change(Signature, :count).by(1)
+      context 'new' do
+        before { post :create, :signature => valid_attributes }
+
+        it 'should create a new signature' do
+          expect {
+            valid_attributes[:email] = 'foo@example.com'
+            post :create, :signature => valid_attributes
+          }.to change(Signature, :count).by(1)
+        end
+
+        it 'should assign a created signature to @signature' do
+          assigns(:signature).should be_a(Signature)
+        end
+
+        it 'should persist a signature' do
+          assigns(:signature).should be_persisted
+        end
+
+        it 'should save the ip address' do
+          Signature.last.ip.should eq(@ip)
+        end
+
+        it 'should persist a confirmation' do
+          expect {
+            post :create, :signature => valid_attributes
+          }.to change(Confirmation, :count).by(1)
+        end
+
+        it 'should redirect to the created signature' do
+          response.should redirect_to(petition_signature_url(assigns(:signature)))
+        end
       end
 
-      it 'should assign a created signature to @signature' do
-        assigns(:signature).should be_a(Signature)
+      context 'dupe unconfirmed' do
+        before do
+          @signature = FactoryGirl.create(:signature)
+          FactoryGirl.create(:confirmation, :signature => @signature)
+        end
+
+        it 'should not create a new signature' do
+          expect {
+            post :create, :signature => {:email      => @signature.email,
+                                         :first_name => @signature.first_name,
+                                         :last_name  => @signature.last_name}
+          }.to change(Signature, :count).by(0)
+        end
+
+        it 'should assign a created signature to @signature' do
+          assigns(:signature).should be_a(Signature)
+        end
+
+        it 'should persist a signature' do
+          assigns(:signature).should be_persisted
+        end
+
+        it 'should save the ip address' do
+          assigns(:signature).ip.should eq(@ip)
+        end
+
+        it 'should persist a confirmation' do
+          expect {
+            post :create, :signature => valid_attributes
+          }.to change(Confirmation, :count).by(1)
+        end
+
+        it 'should redirect to the existing signature' do
+          response.should redirect_to(petition_signature_url(assigns(:signature)))
+        end
+
+        it 'should not set a flash message' do
+          flash.keys.should be_empty
+        end
       end
 
-      it 'should persist a signature' do
-        assigns(:signature).should be_persisted
+      context 'limit unconfirmed' do
+        before do
+          @signature = FactoryGirl.create(:signature)
+          3.times { FactoryGirl.create(:confirmation, :signature => @signature) }
+          post :create, :signature => {:email      => @signature.email,
+                                       :first_name => @signature.first_name,
+                                       :last_name  => @signature.last_name}
+        end
+
+        it 'should not create a new signature' do
+          expect {
+            post :create, :signature => {:email      => @signature.email,
+                                         :first_name => @signature.first_name,
+                                         :last_name  => @signature.last_name}
+          }.to change(Signature, :count).by(0)
+        end
+
+        it 'should redirect to the petition url' do
+          response.should redirect_to(petition_url)
+        end
+
+        it 'should set a flash error message' do
+          flash[:error].should_not be_nil
+        end
       end
 
-      it 'should save the ip address' do
-        Signature.last.ip.should eq(@ip)
-      end
+      context 'confirmed' do
+        before do
+          @signature = FactoryGirl.create(:signature, :confirmed)
+          post :create, :signature => {:email      => @signature.email,
+                                       :first_name => @signature.first_name,
+                                       :last_name  => @signature.last_name}
+        end
 
-      it 'should persist a confirmation' do
-        expect {
-          post :create, :signature => valid_attributes
-        }.to change(Confirmation, :count).by(1)
-      end
+        it 'should not create a new signature' do
+          expect {
+            post :create, :signature => {:email      => @signature.email,
+                                         :first_name => @signature.first_name,
+                                         :last_name  => @signature.last_name}
+          }.to change(Signature, :count).by(0)
+        end
 
-      it 'should redirect to the created signature' do
-        response.should redirect_to(petition_signature_url(Signature.last))
+        it 'should redirect to the petition url' do
+          response.should redirect_to(petition_url)
+        end
+
+        it 'should set a flash warning message' do
+          flash[:warning].should_not be_nil
+        end
       end
     end
 
