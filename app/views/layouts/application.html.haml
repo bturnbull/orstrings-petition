@@ -12,6 +12,7 @@
   %body
     %div.container
       = render :partial => 'layouts/navbar'
+      = render :partial => 'layouts/alert'
       = yield
       = render :partial => 'layouts/footer'
     = javascript_include_tag "application"
