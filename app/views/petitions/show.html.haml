@@ -1,2 +1,6 @@
 =render :partial => 'petition'
+%div.petition-cta
+  %p.text-center
+    %a{:href => new_petition_signature_path}
+      %button.btn.btn-large.btn-primary{:type => 'button'} Sign the Petition!
 =render :partial => 'signatures/signature', :collection => @signatures
