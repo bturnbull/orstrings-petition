@@ -9,3 +9,6 @@
 @import "signatures";
 @import "welcome";
 
+div.footer {
+  margin-top: $baseLineHeight * 2;
+}
