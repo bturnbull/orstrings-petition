@@ -31,8 +31,13 @@ namespace :deploy do
   task :symlink_db, :roles => :app do
     run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
   end
+
+  desc "Symlink mandrill.yml"
+  task :symlink_mandrill, :roles => :app do
+    run "ln -nfs #{deploy_to}/shared/config/mandrill.yml #{release_path}/config/mandrill.yml"
+  end
 end
 
 after 'deploy:restart', 'deploy:cleanup'
-after 'deploy:finalize_update', 'deploy:symlink_db'
+after 'deploy:finalize_update', 'deploy:symlink_db', 'deploy:symlink_mandrill'
 
