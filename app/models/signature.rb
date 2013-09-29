@@ -35,6 +35,9 @@ class Signature < ActiveRecord::Base
 
   attr_accessible :email, :first_name, :last_name, :town, :is_visible, :can_email
 
+  # temporarily set is_visible to true
+  before_create { self.is_visible = true }
+
   scope :confirmed,    lambda { where('confirmed_at IS NOT NULL').order('confirmed_at DESC') }
   scope :unconfirmed,  lambda { where('confirmed_at IS NULL') }
 
