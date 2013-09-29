@@ -1,0 +1,37 @@
+<style>
+  body {
+    margin: 0 30px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+    background-color: #FFFFFF;
+  }
+
+  a {
+    color: #0088cc;
+    text-decoration: none;
+  }
+
+  div.footer {
+    color: #666666;
+    background-color: #DDDDDD;
+    border: 1px solid #666666;
+    padding: 15px;
+    font-size: 80%;
+  }
+
+  div.footer p {
+    margin: 0;
+    padding: 0;
+  }
+</style>
+<div class="content">
+  <h1>Signature Confirmation</h1>
+  <p>Please click or copy-and-paste this link into your browser to confirm your signature on the Oyster River Strings Petition.</p>
+  <p><a href="<%= petition_confirmation_url(@confirmation) %>"><%= petition_confirmation_url(@confirmation) %></a></p>
+  <p>Your signature will not be included in the petition until you confirm this is your email address using the link above.</p>
+  <p>If you did not sign the Oyster River Strings Petition, you can delete this email and any follow-up emails.  This is attempt <%= @confirmation.signature.confirmations.count %> of a maximum of 3 for this email address.</p>
+</div>
+<div class="footer">
+  <p>This email is classified as a transactional email for purposes of CAN-SPAM compliance.  It was sent by the <a href="<%= root_url %>">Oyster River Strings</a> petition website in response to a signature request at <%= @confirmation.created_at %> from IP address <%= @confirmation.signature.ip %>.</p>

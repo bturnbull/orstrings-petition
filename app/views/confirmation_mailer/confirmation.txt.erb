@@ -1,0 +1,14 @@
+Signature Confirmation
+======================
+
+Please click or copy-and-paste this link into your browser to confirm your signature on the Oyster River Strings Petition.
+
+<%= petition_confirmation_url(@confirmation) %>
+
+Your signature will not be included in the petition until you confirm this is your email address using the link above.
+
+If you did not sign the Oyster River String Petition, you can delete this email and any follow-up emails.  This is attempt <%= @confirmation.signature.confirmations.count %> of a maximum of 3 for this email address.
+
+----------------------
+
+his email is classified as a transactional email for purposes of CAN-SPAM compliance.  It was sent by the <a href="<%= root_url %>">Oyster River Strings</a> petition website in response to a signature request at <%= @confirmation.created_at %> from IP address <%= @confirmation.signature.ip %>.
