@@ -1,9 +1,9 @@
-- @signature ||= signature
+- signature = @signature if @signature
 %div.signature
-  %p.name= @signature.is_visible? ? @signature.name : 'Anonymous'
+  %p.name= signature.is_visible? ? signature.name : 'Anonymous'
   %p.info
-    %span.town= @signature.town
+    %span.town= signature.town
     &mdash;
     %span.conf
       Signed
-      = friendly_date(@signature.confirmed_at)
+      = friendly_date(signature.confirmed_at)
