@@ -1,5 +1,8 @@
 %div.navbar.navbar-inverse
   %div.navbar-inner
     = link_to 'Oyster River Strings', root_path, :class => 'brand'
-    %p.navbar-text.pull-right= link_to 'View the Petition', petition_path, :class => 'navbar-link'
+    %a{:href => new_petition_signature_path}
+      %button.btn.btn-warning.pull-right{:type => 'button'} Sign Petition
     %ul.nav
+      %li
+        = link_to 'View Petition', petition_path

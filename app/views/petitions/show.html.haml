@@ -1,8 +1,4 @@
 =render :partial => 'petition'
-%div.petition-cta
-  %p.text-center
-    %a{:href => new_petition_signature_path}
-      %button.btn.btn-large.btn-primary{:type => 'button'} Sign the Petition!
 %div.row
   %div.span5.offset1
     - @signatures.each_with_index do |signature, index|
@@ -12,3 +8,9 @@
     - @signatures.each_with_index do |signature, index|
       - next if index.even?
       = render :partial => 'signatures/signature', :locals => {:signature => signature}
+%div.row
+  %div.span12
+    %div.petition-cta
+      %p.text-center
+        %a{:href => new_petition_signature_path}
+          %button.btn.btn-large.btn-primary{:type => 'button'} Sign the Petition!
