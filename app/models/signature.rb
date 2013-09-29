@@ -28,7 +28,10 @@ class Signature < ActiveRecord::Base
                       :source      => :sender
   has_many :confirmations
 
-  validates :email, :presence => true
+  validates :email,      :presence  => true
+  validates :first_name, :presence  => true
+  validates :last_name,  :presence  => true
+  validates :town,       :inclusion => %w{ Durham Lee Madbury Other }
 
   attr_accessible :email, :first_name, :last_name, :town, :is_visible, :can_email
 

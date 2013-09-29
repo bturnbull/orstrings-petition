@@ -8,4 +8,19 @@ div.signature {
     color: $grey;
     font-size: $baseFontSize * 0.9;
   }
+
+  form {
+    .field_with_errors {
+      input {
+        padding: 2px;
+        background-color: #F2DEDE;
+      }
+    }
+
+    span.error {
+      color: #B94A4A;
+      font-size: 90%;
+      font-weight: bold;
+    }
+  }
 }
