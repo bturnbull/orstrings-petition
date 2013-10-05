@@ -19,6 +19,8 @@ describe ConfirmationMailer do
       mail.from.should eq(['confirm@orstrings.org'])
     end
 
-    it 'should set the body'
+    it 'should set the body' do
+      mail.body.should_not be_nil
+    end
   end
 end
