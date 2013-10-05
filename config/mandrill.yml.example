@@ -8,3 +8,7 @@
     :password: APIKEY
     :authentication: login
     :domain: DOMAIN
+  :inbound:
+    :apikey: APIKEY
+    :deliver_to: EMAILADDR
+    :deliver_from: EMAILADDR

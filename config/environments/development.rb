@@ -37,7 +37,9 @@ Orstrings::Application.configure do
 
   # Mandrill configuration
   if File.exist?(Rails.root.join('config/mandrill.yml'))
-    config.action_mailer.smtp_settings = YAML.load_file(Rails.root.join('config/mandrill.yml'))[:mandrill][:smtp]
+    mandrill_config = YAML.load_file(Rails.root.join('config/mandrill.yml'))[:mandrill]
+    config.mandrill = mandrill_config
+    config.action_mailer.smtp_settings = mandrill_config[:smtp]
   end
 
   # Enable livereload

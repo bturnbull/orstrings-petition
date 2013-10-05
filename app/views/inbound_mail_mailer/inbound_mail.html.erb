@@ -1,0 +1,18 @@
+<style>
+  body {
+    margin: 0 30px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+    background-color: #FFFFFF;
+  }
+</style>
+<div class="content">
+  <h1>Inbound Email Event</h1>
+  <p><strong>To:</strong> <%= @to_email %><br />
+  <strong>From:</strong> <%= @from_name %> <%= @from_email %><br />
+  <strong>Received:</strong> <%= @timestamp %><br />
+  <strong>Message:</strong></p>
+  <pre><%= @message %></pre><br />
+</div>

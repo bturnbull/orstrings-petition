@@ -10,6 +10,8 @@ Orstrings::Application.routes.draw do
                               :constraints => {:id => /[a-f0-9]{32}/}
   end
 
+  resource :inbox, :controller => 'inbox', :only => [:show,:create]
+
   root :to => 'welcome#index'
 
 end

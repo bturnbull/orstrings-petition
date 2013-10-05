@@ -32,6 +32,12 @@ Orstrings::Application.configure do
   # Mail host domain for testing
   config.action_mailer.smtp_settings = {:domain => 'example.com'}
 
+  # Mandrill configuration
+  if File.exist?(Rails.root.join('config/mandrill.yml'))
+    mandrill_config = YAML.load_file(Rails.root.join('config/mandrill.yml'))[:mandrill]
+    config.mandrill = mandrill_config
+  end
+
   # Raise exception on mass assignment protection for Active Record models
   config.active_record.mass_assignment_sanitizer = :strict
 

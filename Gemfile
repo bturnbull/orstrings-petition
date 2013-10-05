@@ -4,6 +4,7 @@ gem 'rails', '3.2.14'
 
 gem 'haml-rails'
 gem 'jquery-rails'
+gem 'mandrill-rails'
 
 group :production do
   gem 'pg'
