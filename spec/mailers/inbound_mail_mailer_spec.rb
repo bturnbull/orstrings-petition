@@ -4,8 +4,8 @@ describe InboundMailMailer do
   subject { InboundMailMailer }
 
   describe 'inbound_mail' do
-    let(:msg) { {'email' => 'to@example.com', 'from_email' => 'from@example.com', 'from_name' => 'Joe User', 'text' => 'The body of the mail', 'raw_message' => 'The raw mail message'} }
-    let(:payload) { {'tc' => Time.now.to_s, 'msg' => msg} }
+    let(:msg) { {'email' => 'to@example.com', 'from_email' => 'from@example.com', 'from_name' => 'Joe User', 'subject' => 'the subject of the mail', 'text' => 'The body of the mail', 'raw_msg' => 'The raw mail message'} }
+    let(:payload) { {'msg' => msg} }
     let(:mail) { subject.inbound_mail(payload) }
 
     it 'should render the subject' do
