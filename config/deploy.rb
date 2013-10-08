@@ -7,7 +7,7 @@ set :application,        'orstrings'
 set :user,               'orstrings'
 set :rails_env,          'production'
 
-set :rbenv_ruby_version, '1.9.3-p429'
+set :rbenv_ruby_version, '1.9.3-p448'
 
 set :bundle_without,     [:development, :test]
 
