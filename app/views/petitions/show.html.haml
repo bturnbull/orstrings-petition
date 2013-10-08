@@ -1,4 +1,5 @@
 =render :partial => 'petition'
+%h3.text-center Signatures
 %div.row
   %div.span5.offset1
     - @signatures.each_with_index do |signature, index|
@@ -8,6 +9,22 @@
     - @signatures.each_with_index do |signature, index|
       - next if index.even?
       = render :partial => 'signatures/signature', :locals => {:signature => signature}
+%div.row
+  %div.span12
+    %div.count
+      %p.text-center
+        %span.count
+          Durham:
+          = @signatures.where(:town => 'Durham').count
+        %span.count
+          Lee:
+          = @signatures.where(:town => 'Lee').count
+        %span.count
+          Madbury:
+          = @signatures.where(:town => 'Madbury').count
+        %span.count
+          Other:
+          = @signatures.where(:town => 'Other').count
 %div.row
   %div.span12
     %div.petition-cta
