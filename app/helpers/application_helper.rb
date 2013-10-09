@@ -6,13 +6,13 @@ module ApplicationHelper
     elsif time > 12.hours.ago
       'about ' + time_ago_in_words(time) + ' ago'
     elsif time > 3.days.ago
-      time.strftime('on %A around %l %p')
+      time.in_time_zone(Rails.configuration.display_time_zone).strftime('on %A around %l %p')
     else
-      time.strftime('on %A, %B %-d around %l %p')
+      time.in_time_zone(Rails.configuration.display_time_zone).strftime('on %A, %B %-d around %l %p')
     end
   end
 
   def friendly_date(date)
-    date.strftime("%A, %B %-d %Y")
+    date.in_time_zone(Rails.configuration.display_time_zone).strftime("%A, %B %-d %Y")
   end
 end

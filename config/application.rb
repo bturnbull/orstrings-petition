@@ -66,5 +66,7 @@ module Orstrings
       g.template_engine     :haml
     end
 
+    # Set display timezone
+    config.display_time_zone = 'Eastern Time (US & Canada)'
   end
 end
