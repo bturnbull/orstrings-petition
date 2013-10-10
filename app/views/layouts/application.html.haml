@@ -1,9 +1,17 @@
 !!!
-%html
+%html{:prefix => 'og: http://ogp.me/ns#'}
   %head
     %title Oyster River Strings
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
     %meta{:"http-equiv" => "X-UA-Compatible", :content => "IE=edge"}
+    %meta{:property => 'og:title', :content => 'Oyster River Strings Petition'}
+    %meta{:property => 'og:description', :content => 'Petition to establish a string music curriculum at Oyster River Cooperative School District'}
+    %meta{:property => 'og:type', :content => 'website'}
+    %meta{:property => 'og:url', :content => root_url}
+    %meta{:property => 'og:image', :content => URI.join(root_url, image_path('simple_logo.png'))}
+    %meta{:property => 'og:image:type', :content => 'image/png'}
+    %meta{:property => 'og:image:width', :content => '400'}
+    %meta{:property => 'og:image:height', :content => '400'}
     = stylesheet_link_tag    "application", :media => "all"
     /[if lt IE 9]
       = javascript_include_tag "html5shiv.js"
