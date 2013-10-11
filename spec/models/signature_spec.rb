@@ -32,6 +32,7 @@ describe Signature do
   end
 
   describe 'attributes' do
+    subject { FactoryGirl.build(:signature) }
 
     { :email         => {:assignable => true,  :value => 'foo@example.com'},
       :first_name    => {:assignable => true,  :value => 'Bart'},
@@ -54,6 +55,18 @@ describe Signature do
           end
         end
       end
+    end
+
+    it 'should downcase email addresses' do
+      subject.email = 'FOO@example.com'
+      subject.save
+      subject.email.should eq('foo@example.com')
+    end
+
+    it 'should strip whitespace from email addresses' do
+      subject.email = 'foo @example.com'
+      subject.save
+      subject.email.should eq('foo@example.com')
     end
   end
 
