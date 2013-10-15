@@ -35,10 +35,12 @@ class Signature < ActiveRecord::Base
 
   attr_accessible :email, :first_name, :last_name, :town, :is_visible, :can_email
 
-  # temporarily set is_visible to true and clean up email addresses
+  # temporarily set is_visible to true and clean up names and email addresses
   before_create do
     self.is_visible = true
     self.email = email.downcase.gsub(/\s+/, '')
+    first_name.capitalize! if first_name.match(/^[a-z]+$/)
+    last_name.capitalize! if last_name.match(/^[a-z ]+$/)
   end
 
   scope :confirmed,    lambda { where('confirmed_at IS NOT NULL').order('confirmed_at DESC') }

@@ -68,6 +68,24 @@ describe Signature do
       subject.save
       subject.email.should eq('foo@example.com')
     end
+
+    it 'should capitalize first names' do
+      subject.first_name = 'bart'
+      subject.save
+      subject.first_name.should eq('Bart')
+    end
+
+    it 'should capitalize last names' do
+      subject.last_name = 'simpson'
+      subject.save
+      subject.last_name.should eq('Simpson')
+    end
+
+    it 'should not capitalize mixed case last names' do
+      subject.last_name = 'von Dracula'
+      subject.save
+      subject.last_name.should eq('von Dracula')
+    end
   end
 
   describe 'scopes' do
