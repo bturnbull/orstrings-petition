@@ -7,14 +7,3 @@
 # Ignore bundler config
 /.bundle
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-
-# Ignore configuration files
-/config/database.yml
-/config/mandrill.yml
-
-# Ignore all logfiles, coverage reports, and tempfiles.
-/log/*.log
-/coverage
-/tmp

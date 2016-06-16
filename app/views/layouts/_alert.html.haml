@@ -1,6 +1,0 @@
-- flash.each do |name, message|
-  - message = {:front => name.to_s.capitalize, :text => message} unless message.is_a?(Hash)
-  %div.alert{:class => "alert-#{name}"}
-    %button.close{:type => 'button', :'data-dismiss' => 'alert'} &times;
-    %strong= message[:front] + ':'
-    = message[:text]
